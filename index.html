@@ -1,0 +1,168 @@
+<!doctype html><html lang="es"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Vitrina de Autos a Escala · Colección Diecast</title>
+<style>
+:root{--bg:#0d1117;--card:#161c26;--card2:#1e2634;--accent:#f59e0b;--red:#ef4444;--txt:#f1f5f9;--mut:#94a3b8;--brd:#2a3446}
+*{box-sizing:border-box}body{margin:0;font-family:system-ui,-apple-system,Segoe UI,Roboto,sans-serif;background:radial-gradient(circle at top,#1e293b,var(--bg) 62%);color:var(--txt);min-height:100vh}
+header{text-align:center;padding:38px 16px 20px;border-bottom:1px solid #1f2937;background:linear-gradient(180deg,#111827cc,transparent)}
+h1{margin:0;font-family:Georgia,serif;font-size:clamp(1.9rem,5.5vw,3.1rem);color:var(--accent);letter-spacing:1.5px;text-shadow:0 2px 14px #0009}
+.sub{color:var(--mut);margin-top:8px;font-size:.98rem}
+.brands-ribbon{display:flex;gap:8px;justify-content:center;flex-wrap:wrap;margin:14px auto 0;max-width:900px}
+.b-pill{background:#1e2634;border:1px solid var(--brd);color:#cbd5e1;font-size:.78rem;padding:4px 11px;border-radius:20px;letter-spacing:.4px}
+.stats{display:flex;gap:14px;justify-content:center;flex-wrap:wrap;margin:20px 0}
+.stat{background:var(--card);border:1px solid var(--brd);border-radius:14px;padding:12px 22px;min-width:140px;box-shadow:0 6px 18px #0005}
+.stat b{display:block;font-size:1.45rem;color:var(--accent)}
+.controls{max-width:1180px;margin:0 auto;display:flex;flex-wrap:wrap;gap:10px;justify-content:center;align-items:center;padding:0 12px}
+#q{width:min(380px,92vw);padding:11px 16px;border-radius:30px;border:1px solid var(--brd);background:#111620;color:var(--txt);font-size:.96rem}
+select.flt{padding:10px 14px;border-radius:24px;border:1px solid var(--brd);background:#111620;color:var(--txt);font-size:.9rem;cursor:pointer}
+select.flt:focus,#q:focus{outline:none;border-color:var(--accent)}
+.count-bar{margin-top:12px;color:var(--mut);font-size:.88rem}
+main{display:grid;grid-template-columns:repeat(auto-fill,minmax(255px,1fr));gap:22px;padding:24px;max-width:1240px;margin:auto}
+.c{background:linear-gradient(180deg,var(--card2),var(--card));border:1px solid var(--brd);border-radius:18px;overflow:hidden;cursor:pointer;transition:.22s;box-shadow:0 8px 24px #0006;display:flex;flex-direction:column}
+.c:hover{transform:translateY(-5px);border-color:var(--accent)}.c .ph{aspect-ratio:4/3;background:#090d14 center/cover;position:relative;overflow:hidden}
+.c .ph img{width:100%;height:100%;object-fit:cover}.tag{position:absolute;top:10px;left:10px;background:#000c;color:var(--accent);padding:3px 10px;border-radius:20px;font-size:.78rem;font-weight:600}
+.yr-tag{position:absolute;top:10px;right:10px;background:#000c;color:#fff;padding:3px 9px;border-radius:20px;font-size:.75rem}
+.br-tag{position:absolute;bottom:8px;left:10px;background:#f59e0b;color:#0b0f17;padding:2px 9px;border-radius:12px;font-size:.74rem;font-weight:700;text-transform:uppercase}
+.sc-tag{position:absolute;bottom:8px;right:10px;background:#000c;color:#e2e8f0;padding:2px 8px;border-radius:12px;font-size:.73rem}
+.c .bd{padding:14px;display:flex;flex-direction:column;flex:1}.c h3{margin:0 0 6px;font-size:1.05rem;line-height:1.3}.c p{margin:3px 0;color:var(--mut);font-size:.86rem}
+.v{color:var(--accent)!important;font-weight:600;margin-top:auto!important;padding-top:8px}
+.empty-box{grid-column:1/-1;text-align:center;background:var(--card);border:1px dashed var(--brd);border-radius:18px;padding:48px 20px;color:var(--mut)}
+.empty-box h3{color:var(--accent);margin:0 0 8px;font-size:1.3rem}
+#m{position:fixed;inset:0;background:#000d;display:none;align-items:center;justify-content:center;padding:16px;z-index:9}
+#m .box{background:var(--card);border:1px solid var(--accent);border-radius:18px;max-width:900px;width:100%;max-height:92vh;overflow:auto;display:grid;grid-template-columns:1.05fr .95fr}
+#m img{width:100%;display:block;border-bottom:1px solid var(--brd)}#m .inf{padding:22px}#m h2{margin-top:0;color:var(--accent);font-family:Georgia,serif;font-size:1.4rem}
+#m dt{color:var(--mut);font-size:.76rem;text-transform:uppercase;margin-top:10px;letter-spacing:.5px}#m dd{margin:2px 0 0;font-size:.95rem}
+.x{float:right;background:none;border:0;color:var(--txt);font-size:1.7rem;cursor:pointer;line-height:1}
+@media(max-width:720px){#m .box{grid-template-columns:1fr}}footer{text-align:center;color:var(--mut);font-size:.8rem;padding:30px;border-top:1px solid #1f2937}
+</style></head><body>
+<header>
+  <h1>🏎️ Vitrina de Autos a Escala · Colección Diecast</h1>
+  <div class="sub">Colección privada de vehículos a escala (Hot Wheels · Matchbox · Maisto · Tomica · Mattel · Tonka)</div>
+  <div class="brands-ribbon">
+    <span class="b-pill">Hot Wheels</span>
+    <span class="b-pill">Matchbox</span>
+    <span class="b-pill">Maisto</span>
+    <span class="b-pill">Tomica</span>
+    <span class="b-pill">Mattel</span>
+    <span class="b-pill">Tonka</span>
+  </div>
+  <div class="stats">
+    <div class="stat"><b id="nModelos">0</b>modelos</div>
+    <div class="stat"><b id="nUnidades">0</b>unidades</div>
+    <div class="stat"><b>$3.000 – $6.000</b>valor estimado (CLP)</div>
+  </div>
+  <div class="controls">
+    <input id="q" placeholder="Buscar modelo, marca, serie, país, año, color, código…">
+    <select id="fBrand" class="flt" title="Filtrar por marca de fabricante">
+      <option value="all">🏷️ Todas las marcas</option>
+      <option value="hot_wheels">🔥 Hot Wheels</option>
+      <option value="matchbox">🟧 Matchbox / Lesney</option>
+      <option value="maisto">🏁 Maisto</option>
+      <option value="tomica">🇯🇵 Tomica</option>
+      <option value="mattel">⚙️ Mattel</option>
+      <option value="tonka">🚜 Tonka</option>
+      <option value="majorette">🇫🇷 Majorette</option>
+      <option value="other">✨ Otros</option>
+    </select>
+    <select id="fYear" class="flt" title="Filtrar por época / año">
+      <option value="all">📅 Todos los años</option>
+      <option value="1960s_70s">Vintage 60s–70s (Redlines / Lesney / Tonka clásicos)</option>
+      <option value="1980s">Años 80 (1980–1989)</option>
+      <option value="1990s">Años 90 (1990–1999)</option>
+      <option value="2000s">Años 2000 (2000–2009)</option>
+      <option value="2010s">Años 2010 (2010–2019)</option>
+      <option value="2020s">Años 2020+ (2020–presente)</option>
+    </select>
+    <select id="fScale" class="flt" title="Filtrar por escala">
+      <option value="all">📏 Todas las escalas</option>
+      <option value="1:64">Escala 1:64</option>
+      <option value="1:43">Escala 1:43</option>
+      <option value="1:24">Escala 1:24</option>
+      <option value="1:18">Escala 1:18</option>
+      <option value="tonka">Tonka / Gran escala</option>
+      <option value="other">Otras</option>
+    </select>
+    <select id="fPrice" class="flt" title="Filtrar por rango de valor">
+      <option value="all">💰 Todos los precios</option>
+      <option value="high">💎 Joyas / Alta gama ($15.000+ CLP)</option>
+      <option value="mid">⭐ Cotizados ($6.000 – $14.990 CLP)</option>
+      <option value="low">🚗 Clásicos / Mainline (hasta $5.990 CLP)</option>
+    </select>
+    <select id="fSort" class="flt" title="Ordenar catálogo">
+      <option value="price_desc" selected>⬆️ Precio: más caros primero</option>
+      <option value="price_asc">⬇️ Precio: más baratos primero</option>
+      <option value="year_asc">⏳ Año: más antiguos primero</option>
+      <option value="year_desc">🆕 Año: más recientes primero</option>
+      <option value="id_asc">🔢 Código: AUTO-001 al final</option>
+    </select>
+  </div>
+  <div class="count-bar" id="cnt"></div>
+</header>
+<main id="g"></main>
+<div id="m" onclick="if(event.target==this)cerrar()"><div class="box"><div id="mi"></div><div class="inf"><button class="x" onclick="cerrar()">×</button><div id="md"></div></div></div></div>
+<footer>Valores referenciales basados en ventas reales internacionales (eBay / guías diecast) y mercado chileno. Actualizado 2026-10-24.</footer>
+<script>
+const D=[{"id": "AUTO-001", "modelo": "'59 Caddy (1959 Cadillac Eldorado Biarritz Convertible)", "marca_fabricante": "Hot Wheels (Mattel)", "marca_auto": "Cadillac", "serie": "California Dreamin' 5-Pack (Toy #17492, diseño de Larry Wood)", "anio": "1997 (molde © 1989)", "escala": "1:64", "fabricacion": "Tailandia (© 1989 MATTEL INC THAILAND)", "color": "Azul metálico (Metalflake Light Blue) con gráficos laterales rosados, azul oscuro y dorados ('Low Rider'), interior negro, parabrisas ahumado y llantas doradas de rayos tipo malla (Gold Wire Spoke / Lace Wheels - Gold LW)", "material": "Carrocería diecast de metal (ZAMAC) y chasis cromado de plástico", "estado": "Jugado vintage (Bueno) — conserva parabrisas, interior negro y llantas doradas intactas; presenta desgaste de pintura (playwear) en los bordes de las aletas traseras y el capó", "autenticidad": "Auténtico (Hot Wheels® original de los años 90)", "precio_original": "~US$0,99-1,29 (o ~US$4,99 en el 5-Pack de 1997)", "valor_usd": "3-6", "valor_clp": "3.000-6.000", "venta_chile_clp": "4.500-7.500", "stock": 1, "dolar": 986.58, "fecha": "2026-10-24", "imgs": ["img/AUTO-001.jpg", "img/AUTO-001-2.jpg"], "pmin": 3000, "pmax": 6000, "cmax": 7500, "ymin": 1997, "ymax": 1997, "era": "1990s", "bkey": "hot_wheels", "skey": "1:64"}];const e=s=>String(s??'—').replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+const F=[
+  ['id','Código'],
+  ['marca_fabricante','Fabricante / Marca'],
+  ['marca_auto','Marca del vehículo'],
+  ['serie','Serie / Línea'],
+  ['anio','Año / Época'],
+  ['escala','Escala'],
+  ['fabricacion','País de fabricación'],
+  ['color','Color y decoración (tampos)'],
+  ['material','Material'],
+  ['estado','Estado de conservación'],
+  ['autenticidad','Autenticidad / Marcas en base'],
+  ['valor_usd','Valor internacional (USD)'],
+  ['valor_clp','Valor estimado (CLP)'],
+  ['venta_chile_clp','Precio sugerido Chile (CLP)'],
+  ['precio_original','Precio original de época'],
+  ['stock','Stock (unidades)'],
+  ['notas','Notas de colección'],
+  ['fecha','Fecha de registro']
+];
+function r(){
+  const q=document.getElementById('q').value.trim().toLowerCase();
+  const fb=document.getElementById('fBrand').value;
+  const fy=document.getElementById('fYear').value;
+  const fsc=document.getElementById('fScale').value;
+  const fp=document.getElementById('fPrice').value;
+  const fs=document.getElementById('fSort').value;
+  let L=D.filter(p=>{
+    if(q && !JSON.stringify(p).toLowerCase().includes(q)) return false;
+    if(fb!=='all' && p.bkey!==fb) return false;
+    if(fy!=='all' && p.era!==fy) return false;
+    if(fsc!=='all' && p.skey!==fsc) return false;
+    if(fp==='high' && p.pmax<15000) return false;
+    if(fp==='mid' && (p.pmax<6000 || p.pmax>=15000)) return false;
+    if(fp==='low' && p.pmax>=6000) return false;
+    return true;
+  });
+  L.sort((a,b)=>{
+    if(fs==='price_desc') return (b.pmax-a.pmax)||(b.pmin-a.pmin)||(b.cmax-a.cmax)||a.id.localeCompare(b.id);
+    if(fs==='price_asc') return (a.pmin-b.pmin)||(a.pmax-b.pmax)||(a.cmax-b.cmax)||a.id.localeCompare(b.id);
+    if(fs==='year_asc') return (a.ymin-b.ymin)||(a.ymax-b.ymax)||(b.pmax-a.pmax);
+    if(fs==='year_desc') return (b.ymax-a.ymax)||(b.ymin-a.ymin)||(b.pmax-a.pmax);
+    return a.id.localeCompare(b.id);
+  });
+  document.getElementById('nModelos').textContent=D.length;
+  document.getElementById('nUnidades').textContent=D.reduce((s,p)=>s+(+p.stock||1),0);
+  const shownUnits=L.reduce((s,p)=>s+(+p.stock||1),0);
+  document.getElementById('cnt').textContent=D.length?`Mostrando ${L.length} modelo(s) (${shownUnits} unidades) · Ordenado de mayor a menor valor por defecto`:'🏁 Vitrina lista para recibir los primeros autos de la colección — Hot Wheels · Matchbox · Maisto · Tomica · Mattel · Tonka';
+  if(!D.length){
+    document.getElementById('g').innerHTML='<div class="empty-box"><h3>🏁 Vitrina lista para recibir los primeros autos de la colección — Hot Wheels · Matchbox · Maisto · Tomica · Mattel · Tonka</h3></div>';
+    return;
+  }
+  document.getElementById('g').innerHTML=L.map(p=>`<div class="c" onclick="ver('${p.id}')"><div class="ph">${p.imgs[0]?`<img loading="lazy" src="${p.imgs[0]}" alt="${e(p.modelo)}">`:''}<span class="tag">${e(p.id)}${(p.stock||1)>1?" · x"+p.stock:""}</span><span class="yr-tag">${e(p.anio||p.ymin)}</span><span class="br-tag">${e(p.marca_fabricante)}</span>${p.escala?`<span class="sc-tag">${e(p.escala)}</span>`:''}</div><div class="bd"><h3>${e(p.modelo)}</h3><p>${e(p.serie)}</p><p>🏭 ${e(p.fabricacion)} · ${e(p.marca_auto||'Diecast')}</p><p>⭐ ${e(p.estado)}</p><p class="v">💵 $${e(p.valor_clp)} CLP <span style="font-weight:400;color:var(--mut);font-size:.8rem">(Chile: $${e(p.venta_chile_clp)})</span></p></div></div>`).join('')||'<div class="empty-box"><h3>Sin resultados para ese filtro</h3><p>Prueba cambiando la marca, época, escala o término de búsqueda.</p></div>';
+}
+function ver(id){const p=D.find(x=>x.id==id);if(!p)return;document.getElementById('mi').innerHTML=p.imgs.map(s=>`<img src="${s}">`).join('');
+document.getElementById('md').innerHTML=`<h2>${e(p.modelo)}</h2><dl>${F.filter(f=>p[f[0]]).map(f=>`<dt>${f[1]}</dt><dd>${e(p[f[0]])}</dd>`).join('')}</dl>`;
+document.getElementById('m').style.display='flex';location.hash=id}
+function cerrar(){document.getElementById('m').style.display='none';history.replaceState(null,'',' ')}
+['q','fBrand','fYear','fScale','fPrice','fSort'].forEach(id=>{
+  const el=document.getElementById(id);
+  el[id==='q'?'oninput':'onchange']=r;
+});
+document.onkeydown=k=>k.key=='Escape'&&cerrar();r();if(location.hash)ver(location.hash.slice(1));
+</script></body></html>
