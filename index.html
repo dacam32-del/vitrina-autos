@@ -12,9 +12,14 @@ h1{margin:0;font-family:Georgia,serif;font-size:clamp(1.9rem,5.5vw,3.1rem);color
 .stat{background:var(--card);border:1px solid var(--brd);border-radius:14px;padding:12px 22px;min-width:140px;box-shadow:0 6px 18px #0005}
 .stat b{display:block;font-size:1.45rem;color:var(--accent)}
 .controls{max-width:1180px;margin:0 auto;display:flex;flex-wrap:wrap;gap:10px;justify-content:center;align-items:center;padding:0 12px}
-#q{width:min(380px,92vw);padding:11px 16px;border-radius:30px;border:1px solid var(--brd);background:#111620;color:var(--txt);font-size:.96rem}
-select.flt{padding:10px 14px;border-radius:24px;border:1px solid var(--brd);background:#111620;color:var(--txt);font-size:.9rem;cursor:pointer}
-select.flt:focus,#q:focus{outline:none;border-color:var(--accent)}
+.search-wrap{display:flex;align-items:center;gap:6px;width:min(460px,94vw);background:#111620;border:2px solid #3b4963;border-radius:30px;padding:4px 6px 4px 16px}
+.search-wrap:focus-within{border-color:var(--accent);box-shadow:0 0 0 3px #f59e0b33}
+#q{flex:1;min-width:0;border:0;background:transparent;color:#fff!important;-webkit-text-fill-color:#fff!important;caret-color:var(--accent);font-size:16px;padding:8px 0;outline:none}
+#q::placeholder{color:var(--mut);-webkit-text-fill-color:var(--mut)}
+.btn-s{background:var(--accent);color:#0d1117;border:0;border-radius:22px;padding:8px 14px;font-weight:700;font-size:.9rem;cursor:pointer}
+.btn-c{background:#2a3446;color:#fff;border:0;border-radius:50%;width:30px;height:30px;font-size:.9rem;cursor:pointer;display:none;align-items:center;justify-content:center}
+select.flt{padding:10px 14px;border-radius:24px;border:1px solid var(--brd);background:#111620;color:var(--txt);font-size:16px;cursor:pointer}
+select.flt:focus{outline:none;border-color:var(--accent)}
 .count-bar{margin-top:12px;color:var(--mut);font-size:.88rem}
 main{display:grid;grid-template-columns:repeat(auto-fill,minmax(255px,1fr));gap:22px;padding:24px;max-width:1240px;margin:auto}
 .c{background:linear-gradient(180deg,var(--card2),var(--card));border:1px solid var(--brd);border-radius:18px;overflow:hidden;cursor:pointer;transition:.22s;box-shadow:0 8px 24px #0006;display:flex;flex-direction:column}
@@ -36,28 +41,34 @@ main{display:grid;grid-template-columns:repeat(auto-fill,minmax(255px,1fr));gap:
 </style></head><body>
 <header>
   <h1>🏎️ Vitrina de Autos a Escala · Colección Diecast</h1>
-  <div class="sub">Colección privada de vehículos a escala (Hot Wheels · Matchbox · Maisto · Tomica · Mattel · Tonka)</div>
+  <div class="sub">Colección privada de vehículos a escala (Hot Wheels · Matchbox · Maisto · Tomica · Zylmex · Mattel · Tonka)</div>
   <div class="brands-ribbon">
     <span class="b-pill">Hot Wheels</span>
     <span class="b-pill">Matchbox</span>
     <span class="b-pill">Maisto</span>
     <span class="b-pill">Tomica</span>
+    <span class="b-pill">Zylmex / Zee</span>
     <span class="b-pill">Mattel</span>
     <span class="b-pill">Tonka</span>
   </div>
   <div class="stats">
     <div class="stat"><b id="nModelos">0</b>modelos</div>
     <div class="stat"><b id="nUnidades">0</b>unidades</div>
-    <div class="stat"><b>$3.000 – $6.000</b>valor estimado (CLP)</div>
+    <div class="stat"><b>$12.000 – $25.000</b>valor estimado (CLP)</div>
   </div>
   <div class="controls">
-    <input id="q" placeholder="Buscar modelo, marca, serie, país, año, color, código…">
+    <form class="search-wrap" onsubmit="event.preventDefault();r();document.getElementById('q').blur();">
+      <input type="text" inputmode="search" enterkeyhint="search" autocomplete="off" autocorrect="off" spellcheck="false" id="q" placeholder="Buscar modelo, marca, país, año, color…">
+      <button type="button" class="btn-c" id="btnClr" onclick="limpiar()" title="Limpiar búsqueda">✕</button>
+      <button type="submit" class="btn-s">Buscar</button>
+    </form>
     <select id="fBrand" class="flt" title="Filtrar por marca de fabricante">
       <option value="all">🏷️ Todas las marcas</option>
       <option value="hot_wheels">🔥 Hot Wheels</option>
       <option value="matchbox">🟧 Matchbox / Lesney</option>
       <option value="maisto">🏁 Maisto</option>
       <option value="tomica">🇯🇵 Tomica</option>
+      <option value="zylmex">🇭🇰 Zylmex / Zee Toys</option>
       <option value="mattel">⚙️ Mattel</option>
       <option value="tonka">🚜 Tonka</option>
       <option value="majorette">🇫🇷 Majorette</option>
@@ -101,7 +112,9 @@ main{display:grid;grid-template-columns:repeat(auto-fill,minmax(255px,1fr));gap:
 <div id="m" onclick="if(event.target==this)cerrar()"><div class="box"><div id="mi"></div><div class="inf"><button class="x" onclick="cerrar()">×</button><div id="md"></div></div></div></div>
 <footer>Valores referenciales basados en ventas reales internacionales (eBay / guías diecast) y mercado chileno. Actualizado 2026-10-24.</footer>
 <script>
-const D=[{"id": "AUTO-001", "modelo": "'59 Caddy (1959 Cadillac Eldorado Biarritz Convertible)", "marca_fabricante": "Hot Wheels (Mattel)", "marca_auto": "Cadillac", "serie": "California Dreamin' 5-Pack (Toy #17492, diseño de Larry Wood)", "anio": "1997 (molde © 1989)", "escala": "1:64", "fabricacion": "Tailandia (© 1989 MATTEL INC THAILAND)", "color": "Azul metálico (Metalflake Light Blue) con gráficos laterales rosados, azul oscuro y dorados ('Low Rider'), interior negro, parabrisas ahumado y llantas doradas de rayos tipo malla (Gold Wire Spoke / Lace Wheels - Gold LW)", "material": "Carrocería diecast de metal (ZAMAC) y chasis cromado de plástico", "estado": "Jugado vintage (Bueno) — conserva parabrisas, interior negro y llantas doradas intactas; presenta desgaste de pintura (playwear) en los bordes de las aletas traseras y el capó", "autenticidad": "Auténtico (Hot Wheels® original de los años 90)", "precio_original": "~US$0,99-1,29 (o ~US$4,99 en el 5-Pack de 1997)", "valor_usd": "3-6", "valor_clp": "3.000-6.000", "venta_chile_clp": "4.500-7.500", "stock": 1, "dolar": 986.58, "fecha": "2026-10-24", "imgs": ["img/AUTO-001.jpg", "img/AUTO-001-2.jpg"], "pmin": 3000, "pmax": 6000, "cmax": 7500, "ymin": 1997, "ymax": 1997, "era": "1990s", "bkey": "hot_wheels", "skey": "1:64"}];const e=s=>String(s??'—').replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+const D=[{"id": "AUTO-002", "modelo": "Honda CR-X 1.5i (1ª Generación Ballade Sports, código D79)", "marca_fabricante": "Zylmex / Zee Toys (Dynacast)", "marca_auto": "Honda", "serie": "Zee Toys / Pacesetters Serie D (Molde #D79)", "anio": "~1985-1989 (años 80)", "escala": "1:64", "fabricacion": "Hong Kong / China (marca de origen rectificada en el molde)", "color": "Rojo con faldones y parachoques gris grafito (two-tone original de época), doble franja blanca y letras CRX blancas en el capó", "material": "Carrocería diecast de metal y chasis texturizado de plástico gris con logo Z en círculo", "estado": "Jugado vintage (Regular a bueno) — conserva vidrios, ejes, llantas deportivas de los 80 y tampo CRX en el capó; presenta saltaduras de pintura por uso de época", "autenticidad": "Auténtico (sello Z de Zylmex / Zee Toys y código D79 grabados en la base)", "precio_original": "~US$0,79-1,29", "valor_usd": "5-10", "valor_clp": "5.000-10.000", "venta_chile_clp": "6.500-12.000", "stock": 1, "dolar": 986.58, "fecha": "2026-10-24", "notas": "Pieza JDM ochentera muy buscada: Zylmex (Zee Toys) fue una mítica marca de Hong Kong de los años 70 y 80, y el Honda CR-X de primera generación (#D79) es uno de sus moldes japoneses más coleccionables.", "imgs": ["img/AUTO-002.jpg", "img/AUTO-002-2.jpg"], "pmin": 5000, "pmax": 10000, "cmax": 12000, "ymin": 1985, "ymax": 1989, "era": "1980s", "bkey": "zylmex", "skey": "1:64"}, {"id": "AUTO-001", "modelo": "'59 Caddy (1959 Cadillac Eldorado Biarritz Convertible)", "marca_fabricante": "Hot Wheels (Mattel)", "marca_auto": "Cadillac", "serie": "California Dreamin' 5-Pack (Toy #17492, diseño de Larry Wood)", "anio": "1997 (molde © 1989)", "escala": "1:64", "fabricacion": "Tailandia (© 1989 MATTEL INC THAILAND)", "color": "Azul metálico (Metalflake Light Blue) con gráficos laterales rosados, azul oscuro y dorados ('Low Rider'), interior negro, parabrisas ahumado y llantas doradas de rayos tipo malla (Gold Wire Spoke / Lace Wheels - Gold LW)", "material": "Carrocería diecast de metal (ZAMAC) y chasis cromado de plástico", "estado": "Jugado vintage (Bueno) — conserva parabrisas, interior negro y llantas doradas intactas; presenta desgaste de pintura (playwear) en los bordes de las aletas traseras y el capó", "autenticidad": "Auténtico (Hot Wheels® original de los años 90)", "precio_original": "~US$0,99-1,29 (o ~US$4,99 en el 5-Pack de 1997)", "valor_usd": "3-6", "valor_clp": "3.000-6.000", "venta_chile_clp": "4.500-7.500", "stock": 1, "dolar": 986.58, "fecha": "2026-10-24", "imgs": ["img/AUTO-001.jpg", "img/AUTO-001-2.jpg"], "pmin": 3000, "pmax": 6000, "cmax": 7500, "ymin": 1997, "ymax": 1997, "era": "1990s", "bkey": "hot_wheels", "skey": "1:64"}, {"id": "AUTO-003", "modelo": "Custom '56 Ford Truck (Ford F-100 1956 Rat Rod, código DTX35)", "marca_fabricante": "Hot Wheels (Mattel)", "marca_auto": "Ford", "serie": "Rod Squad 5/10 (2017 Mainline #148/365, código DTX35, lote J48)", "anio": "2017 (lote J48 = fines de 2016; molde ©2008,'16)", "escala": "1:64", "fabricacion": "Malasia (made in Malaysia)", "color": "Gris celeste mate estilo Rat Rod con pátina de óxido simulada de fábrica, logo 'HOT WHEELS Fire Truck' en puertas, pisaderas rojas, vidrios amarillos y motor cromado expuesto", "material": "Carrocería diecast de metal (ZAMAC) y chasis de plástico café rojizo", "estado": "Muy bueno, suelto — el efecto desgastado/oxidado de la carrocería es el diseño original Rat Rod de fábrica; ejes, llantas negras con aro cromado y vidrios amarillos intactos", "autenticidad": "Auténtico (grabado DTX35 Custom '56 Ford Truck ©2008,'16 Mattel Malaysia J48)", "precio_original": "~US$1,09-1,49", "valor_usd": "2-5", "valor_clp": "2.000-5.000", "venta_chile_clp": "3.500-6.000", "stock": 1, "dolar": 986.58, "fecha": "2026-10-24", "notas": "Diseño de Jun Imai. Las manchas de óxido y desgaste en las puertas y guardabarros vienen impresas de fábrica como parte de la línea Rod Squad (Rat Rod).", "imgs": ["img/AUTO-003.jpg", "img/AUTO-003-2.jpg"], "pmin": 2000, "pmax": 5000, "cmax": 6000, "ymin": 2017, "ymax": 2017, "era": "2010s", "bkey": "hot_wheels", "skey": "1:64"}, {"id": "AUTO-004", "modelo": "Lamborghini Murciélago (código 11841)", "marca_fabricante": "Maisto", "marca_auto": "Lamborghini", "serie": "Maisto Fresh Metal / Supercars 3-Inch (#11841)", "anio": "~2003-2010 (años 2000)", "escala": "1:64", "fabricacion": "China (MADE IN CHINA)", "color": "Amarillo perlado (Giallo Orion) con emblema del toro de Lamborghini en el capó, vidrios polarizados oscuros y llantas deportivas de 5 rayos dobles plateados", "material": "Carrocería diecast de metal y chasis de plástico negro texturizado", "estado": "Bueno a muy bueno, suelto — pintura amarilla perlada brillante y emblema frontal nítido; tiene un pequeño salto de pintura en el guardabarros delantero izquierdo", "autenticidad": "Auténtico (grabado Lamborghini Murciélago 11841 Maisto® MADE IN CHINA www.maisto.com)", "precio_original": "~US$1,29-1,99", "valor_usd": "2-4", "valor_clp": "2.000-4.000", "venta_chile_clp": "3.000-5.000", "stock": 1, "dolar": 986.58, "fecha": "2026-10-24", "notas": "Clásico superdeportivo V12 italiano de los años 2000 en su color icónico amarillo Giallo Orion.", "imgs": ["img/AUTO-004.jpg", "img/AUTO-004-2.jpg"], "pmin": 2000, "pmax": 4000, "cmax": 5000, "ymin": 2003, "ymax": 2010, "era": "2000s", "bkey": "maisto", "skey": "1:64"}];
+const e=s=>String(s??'—').replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+const norm=s=>String(s??'').toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g,'');
 const F=[
   ['id','Código'],
   ['marca_fabricante','Fabricante / Marca'],
@@ -122,15 +135,23 @@ const F=[
   ['notas','Notas de colección'],
   ['fecha','Fecha de registro']
 ];
+function limpiar(){
+  const qEl=document.getElementById('q');
+  qEl.value='';
+  r();
+  qEl.focus();
+}
 function r(){
-  const q=document.getElementById('q').value.trim().toLowerCase();
+  const rawQ=document.getElementById('q').value||'';
+  document.getElementById('btnClr').style.display=rawQ.length?'inline-flex':'none';
+  const q=norm(rawQ.trim());
   const fb=document.getElementById('fBrand').value;
   const fy=document.getElementById('fYear').value;
   const fsc=document.getElementById('fScale').value;
   const fp=document.getElementById('fPrice').value;
   const fs=document.getElementById('fSort').value;
   let L=D.filter(p=>{
-    if(q && !JSON.stringify(p).toLowerCase().includes(q)) return false;
+    if(q && !norm(JSON.stringify(p)).includes(q)) return false;
     if(fb!=='all' && p.bkey!==fb) return false;
     if(fy!=='all' && p.era!==fy) return false;
     if(fsc!=='all' && p.skey!==fsc) return false;
@@ -149,7 +170,7 @@ function r(){
   document.getElementById('nModelos').textContent=D.length;
   document.getElementById('nUnidades').textContent=D.reduce((s,p)=>s+(+p.stock||1),0);
   const shownUnits=L.reduce((s,p)=>s+(+p.stock||1),0);
-  document.getElementById('cnt').textContent=D.length?`Mostrando ${L.length} modelo(s) (${shownUnits} unidades) · Ordenado de mayor a menor valor por defecto`:'🏁 Vitrina lista para recibir los primeros autos de la colección — Hot Wheels · Matchbox · Maisto · Tomica · Mattel · Tonka';
+  document.getElementById('cnt').textContent=D.length?`Mostrando ${L.length} modelo(s) (${shownUnits} unidades)`:'🏁 Vitrina lista para recibir los primeros autos de la colección — Hot Wheels · Matchbox · Maisto · Tomica · Mattel · Tonka';
   if(!D.length){
     document.getElementById('g').innerHTML='<div class="empty-box"><h3>🏁 Vitrina lista para recibir los primeros autos de la colección — Hot Wheels · Matchbox · Maisto · Tomica · Mattel · Tonka</h3></div>';
     return;
@@ -160,9 +181,11 @@ function ver(id){const p=D.find(x=>x.id==id);if(!p)return;document.getElementByI
 document.getElementById('md').innerHTML=`<h2>${e(p.modelo)}</h2><dl>${F.filter(f=>p[f[0]]).map(f=>`<dt>${f[1]}</dt><dd>${e(p[f[0]])}</dd>`).join('')}</dl>`;
 document.getElementById('m').style.display='flex';location.hash=id}
 function cerrar(){document.getElementById('m').style.display='none';history.replaceState(null,'',' ')}
-['q','fBrand','fYear','fScale','fPrice','fSort'].forEach(id=>{
-  const el=document.getElementById(id);
-  el[id==='q'?'oninput':'onchange']=r;
+const qInput=document.getElementById('q');
+['input','keyup','change','search','compositionend'].forEach(ev=>qInput.addEventListener(ev,r));
+['fBrand','fYear','fScale','fPrice','fSort'].forEach(id=>{
+  document.getElementById(id).addEventListener('change',r);
 });
-document.onkeydown=k=>k.key=='Escape'&&cerrar();r();if(location.hash)ver(location.hash.slice(1));
+document.addEventListener('keydown',k=>{if(k.key==='Escape')cerrar();});
+r();if(location.hash)ver(location.hash.slice(1));
 </script></body></html>
