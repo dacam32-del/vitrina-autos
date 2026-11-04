@@ -2,7 +2,7 @@
 
 Vitrina virtual de la colección de autos a escala y juguetes de colección de David (Hot Wheels, Matchbox, juguetes vintage a pilas y más), con fotos, marca, escala, año, estado y tasación en pesos chilenos (CLP). Incluye filtros, música de fondo y calculadora para ir sumando piezas.
 
-**Totales:** 397 Fichas · 399 Unidades · Valor estimado (referencia internacional en CLP): $1.808.800 – $3.448.900 · Venta sugerida Chile: $2.057.100 – $3.446.600
+**Totales:** 400 Fichas · 402 Unidades · Valor estimado (referencia internacional en CLP): $1.815.800 – $3.466.700 · Venta sugerida Chile: $2.064.100 – $3.460.600
 
 ## 🛒 Tienda web
 **[https://dacam32-del.github.io/vitrina-autos/](https://dacam32-del.github.io/vitrina-autos/)**
